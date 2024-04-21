@@ -30,9 +30,9 @@ initial begin
     #(PERIOD*2) rst_n = 1;
 end
 
-// Monitor outputs
-always @(posedge clk) begin
-    // Add your output monitoring code here
-end
+// // Monitor outputs
+// always @(posedge clk) begin
+//     // Add your output monitoring code here
+// end
 
 endmodule

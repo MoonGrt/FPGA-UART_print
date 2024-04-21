@@ -27,9 +27,9 @@ always@(*)begin
     localwr_en <= wr_en;
 end
 
-reg [7:0] data= 8'h00;
-reg [2:0] bitpos= 3'h0;
-reg [1:0] state= STATE_IDLE;
+reg [7:0] data = 8'h00;
+reg [2:0] bitpos = 3'h0;
+reg [1:0] state = STATE_IDLE;
 
 wire tx_clk;
 

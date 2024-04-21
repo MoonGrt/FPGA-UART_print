@@ -8,13 +8,20 @@ module top(
 
 // Print Controll -------------------------------------------
 `include "print.vh"
-defparam tx.uart_freq=115200;
-defparam tx.clk_freq=50_000_000;
+defparam tx.uart_freq = 115200;
+defparam tx.clk_freq = 50_000_000;
 assign print_clk = clk;
 assign txp = uart_txp;
 
-always@(posedge rst_n)begin
-    `print("1234567890abcdef", STR);
+reg [23:0] cnt = 0;
+always @(posedge clk) begin
+    if (~rst_n)
+        cnt <= 0;
+    else begin
+        cnt = cnt + 24'b1;
+        if (cnt == 24'b1)
+            `print("0123456789abcdef", STR);
+    end
 end
 // Print Controll -------------------------------------------
 

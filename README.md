@@ -47,7 +47,10 @@
 
 ```
 └─ Project
+  ├─ LICENSE
+  ├─ README.md
   ├─ UART_print.xpr
+  ├─ /images/
   ├─ /UART_print.cache/
   ├─ /UART_print.hw/
   ├─ /UART_print.ip_user_files/
