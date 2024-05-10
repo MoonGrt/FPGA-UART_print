@@ -7,7 +7,8 @@ Completed static elaboration
 Starting simulation data flow analysis
 Completed simulation data flow analysis
 Time Resolution for simulation is 1ps
-Compiling module xil_defaultlib.uart_tx(clk_freq=50000000,uart_f...
+Compiling module xil_defaultlib.uart_rx(CLK_FRE=27)
+Compiling module xil_defaultlib.uart_tx(CLK_FRE=27)
 Compiling module xil_defaultlib.top
 Compiling module xil_defaultlib.top_tb
 Compiling module xil_defaultlib.glbl

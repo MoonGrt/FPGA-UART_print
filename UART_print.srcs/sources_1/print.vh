@@ -2,6 +2,7 @@ parameter STR = 0;
 parameter HEX = 1;
 
 wire print_clk;
+wire print_rst;
 
 reg [7:0] print_seq[255:0];
 reg [7:0] seq_head = 8'd0;
@@ -92,22 +93,22 @@ end
 
 
 // instantiate uart_tx
-reg  uart_en = 0;
-wire uart_bz;
+reg  tx_vaild = 0;
+wire tx_ready;
 wire uart_txp;
-uart_tx tx(print_clk, print_seq[seq_head], uart_en, uart_bz, uart_txp);
+uart_tx tx(print_clk, print_rst, print_seq[seq_head], tx_vaild, tx_ready, uart_txp);
 
 // send the data via UART
 always @(posedge print_clk) begin
-    uart_en <= 1'b0;
-    if (uart_en && uart_bz)
+    tx_vaild <= 1'b0;
+    if (tx_vaild && ~tx_ready)
         seq_head <= seq_head + 8'd1;
-    if (seq_head != seq_tail && !uart_bz)
-        uart_en <= 1'b1;
+    if (seq_head != seq_tail && tx_ready)
+        tx_vaild <= 1'b1;
 end
 
 task int_print(
-    input [1023:0] strin,  // max 128 characters
+    input [1023:0] strin,    // max 128 characters
     input [7:0] type_length  // 8bit width to show 128 characters
 );
 begin    
@@ -124,6 +125,5 @@ begin
         print_buffer <= strin;
     end
 end
-
 `define print(a, b) int_print({>>{a}}, b)
 endtask

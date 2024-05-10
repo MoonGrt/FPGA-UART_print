@@ -49,6 +49,7 @@
 └─ Project
   ├─ LICENSE
   ├─ README.md
+  ├─ top_tb_behav.wcfg
   ├─ UART_print.xpr
   ├─ /images/
   ├─ /UART_print.cache/
@@ -61,6 +62,7 @@
     └─ /sources_1/
       ├─ print.vh
       ├─ top.v
+      ├─ uart_rx.v
       └─ uart_tx.v
 
 ```

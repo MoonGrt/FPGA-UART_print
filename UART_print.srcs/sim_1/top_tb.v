@@ -2,37 +2,24 @@
 
 module top_tb;
 
-// Parameters
-parameter PERIOD = 10;
+parameter T = 10;
 
-// Declare signals
-reg  		clk;
-reg  		rst_n;
-wire 		txp;
+reg  clk = 0;
+reg  rst_n = 0;
+wire txp;
+wire rxp;
 
-// Clock generation
-initial begin
-    clk = 0;
-    forever #(PERIOD/2) clk = ~clk;
-end
+initial
+    forever #(T/2) clk = ~clk;
 
-// Instantiate module
+initial
+    #(T*2) rst_n = 1;
+
 top top (
     .clk(clk),
     .rst_n(rst_n),
-    .txp(txp)
+    .txp(txp),
+    .rxp(rxp)
 );
-
-// Stimulus generation
-initial begin
-    // Add your stimulus code here
-    rst_n = 0;
-    #(PERIOD*2) rst_n = 1;
-end
-
-// // Monitor outputs
-// always @(posedge clk) begin
-//     // Add your output monitoring code here
-// end
 
 endmodule
